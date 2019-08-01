@@ -37,4 +37,18 @@ class User < ApplicationRecord
     def forget
       update_attribute(:remember_digest, nil)
     end
+
+    class << self
+      # Возвращает дайджест данной строки.
+  def digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
+
+  # Возвращает случайный токен.
+  def new_token
+    SecureRandom.urlsafe_base64
+  end
+end
 end
