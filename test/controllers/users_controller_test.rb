@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   def setup
     @user = users(:michael)
+    @other_user = users(:archer)
   end
 
   test "should get new" do
@@ -15,5 +16,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to login_url
   end
 
-  
+
+
 end

@@ -64,6 +64,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     get edit_user_path(@user)
     log_in_as(@user)
     assert_redirected_to edit_user_path(@user)
+    assert session[:forwarding_url] == nil
     name  = "Foo Bar"
     email = "foo@bar.com"
     patch user_path(@user), params: {user: { name:  name,
@@ -75,6 +76,15 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal name,  @user.name
     assert_equal email, @user.email
+  end
+
+  test "should not allow the admin attribute to be edited via the web" do
+    log_in_as(@other_user)
+    assert_not @other_user.admin?
+    patch  user_path(@other_user), params: {user: { password:             '',
+                                            password_confirmation: '',
+                                            admin: true }}
+    assert_not @other_user.reload.admin?
   end
 
 end

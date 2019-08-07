@@ -32,10 +32,13 @@ gem 'faker', '~> 2.1.0'
 
 gem 'will_paginate', '~> 3.1.7'
 
+gem 'jquery', '~> 0.0.1'
+
+gem 'jquery-rails', '~> 4.3', '>= 4.3.5'
 
 gem 'bootstrap-will_paginate', '~> 1.0.0'
 
-
+gem 'jquery_ujs_extended', '~> 0.0.3'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
